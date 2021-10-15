@@ -36,9 +36,36 @@ public class IsPowerOf {
         return res;
     }
 
+    /**
+     * 求
+     * 方法二：
+     * 思路：整数范围内3的最大次幂是19，目标数字是3的幂等，那么一定能被3的19次幂整除
+     * @param a
+     * @return
+     */
+    public static boolean border(int a){
+        return a != 0 && Math.pow(3, 19) % a == 0;
+    }
+
+    /**
+     * 获取整数范围内3的最大次幂
+     * @param a
+     * @return
+     */
+    public static int getMaxPower(int a){
+        int count = 0;
+        //强制类型转换的原因是如果不强转，a*3结果超出最大int数 会丢失精度变成一个int 此处会死循环
+        while ((long)a*3<Integer.MAX_VALUE){
+            a *=3;
+            count++;
+        }
+        return count;
+    }
+
     public static void main(String[] args) {
-        boolean res = isPowerOfThree(27,3);
+        boolean res = border(27);
 
         System.out.println(res);
     }
+
 }
